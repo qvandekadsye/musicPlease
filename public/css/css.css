@@ -1,0 +1,99 @@
+body
+{
+  margin: 0;
+  width: 100%;
+  background-color: #FFFFFF;
+  font-family: sans-serif;
+}
+
+nav, footer
+{
+  width:100%;
+  background-color:#111;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+nav ul
+{
+  display: inline;
+  padding:0;
+
+}
+
+nav ul li
+{
+  list-style: none;
+  display: inline;
+  padding-right: 15px;
+  padding-left: 0;
+}
+
+nav ul li a, nav ul li a:visited
+{
+  color:#eee;
+  text-decoration: none;
+}
+
+main
+{
+  width:100%;
+}
+
+#albumsListes, #foldersListes, #pistesListes
+{
+
+  display:flex;
+  width:90%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right:auto;
+}
+
+.album-link
+{
+  display:flex;
+  width:100%;
+  flex-direction: column;
+  text-align: center;
+  color:#111;
+  text-decoration: none;
+}
+
+.album-info
+{
+  width:25%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.album-info:hover
+{
+  background-color: #ACACAC;
+}
+
+.jaquette
+{
+  margin: auto;
+  width:200px;
+}
+
+.album-name
+{
+  width:100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  vertical-align: middle;
+  padding-top: 2px;
+  font-weight: bold;
+}
+
+footer
+{
+  text-align:center;
+  color: #eee;
+}
