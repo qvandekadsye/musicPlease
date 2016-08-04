@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <% include ./partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include ./partials/header %>
+    </header>
+    <main>
+      <header>
+        <h1>
+          Connexion
+        </h1>
+      </header>
+      <form id="connexionform" method="post" action="/seconnecter" name="fconnect">
+        <label for="ipt_mdp">Mot de passe : </label>
+        <input type="password" name="ipt_mdp"/>
+        <button type="submit" value="Valider">Valider</button>
+      </form>
+    </main>
+    <footer>
+      <% include ./partials/footer %>
+    </footer>
+  </body>
+  </html>

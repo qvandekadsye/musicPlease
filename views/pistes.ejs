@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <% include ./partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include ./partials/header %>
+    </header>
+    <main>
+      <header>
+        <h1>
+          <%= album %>
+        </h1>
+      </header>
+    </main>
+        <section class="dossiers">
+          <header>
+            <h1>
+              dossier
+            </h1>
+          </header>
+            <div id="foldersListes">
+            <% dossiers.forEach(function(item,index){ %>
+              <div class="album-info">
+                <a class="album-link" href="album/<%=item %>">
+                  <img class="jaquette" src ="/cover/<%= album %>"/>
+                <span class="album-name">
+                  <%= item %>
+                </span>
+              </a>
+              </div>
+              <% }); %>
+          </div>
+        </section>
+          <section class="fichiers">
+            <header>
+              <h1>
+                Fichiers
+              </h1>
+            </header>
+            <div id="pistesListes">
+              <% pistes.forEach(function(item,index){ %>
+                <div class="album-info">
+                  <a class="album-link tracks" href="/play/<%=album %>/<%=item%>">
+                    <img class="jaquette" src ="/cover/<%= album %>"/>
+                  <span class="album-name">
+                    <%= item %>
+                  </span>
+                </a>
+              </div>
+                <% }); %>
+              </div>
+            </section>
+            <section  preload="true">
+              <audio id="player" controls="controls">
+                <source id="audiosource" src=""/>
+                Votre navigateur ne supporte pas le flac
+              </audio>
+            </section>
+    </main>
+    <footer>
+      <% include ./partials/footer %>
+      <script>
+      var p = document.getElementById('player');
+      var tracks = document.getElementsByClassName('tracks');
+      for(var i = 0; i<tracks.length; i++){
+        tracks[i].addEventListener("click", function(e){
+          e.preventDefault();
+          var src = this.getAttribute("href");
+          document.getElementById("audiosource").setAttribute("src",src);
+          p.load();
+          p.play();
+
+      });
+      }
+      </script>
+    </footer>
+  </body>
+  </html>

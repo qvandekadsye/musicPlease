@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <% include ./partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include ./partials/header %>
+      <h1>
+        Albums
+      </h1>
+    </header>
+      <section id="albumsListes">
+            <% albums.forEach(function(item,index){ %>
+            <div class="album-info">
+              <a class="album-link" href="album/<%=item %>">
+                <img class="jaquette" src ="cover/<%= item %>"/>
+              <span class="album-name">
+                <%= item %>
+              </span>
+            </a>
+            </div>
+              <% }); %>
+        </section>
+    <footer>
+      <% include ./partials/footer %>
+    </footer>
+  </body>
+  </html>
