@@ -26,7 +26,7 @@ The config file is _config.json_:
   * `coverTypeFile`:Extension of cover (i.e. `{png,jpg,bmp}`)
 
 ## Suggested improvement
-- [ ] Cleaning code. _**important**_
-- [ ] Displaying only audio file _**important**_
+- [X] Cleaning code.
+- [X] Displaying only audio file.
 - [ ] Displying some metadata of audio files _**important**_
 - [ ] Maybe using a best glob nodejs module.
