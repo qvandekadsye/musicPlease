@@ -16,11 +16,11 @@ function getTracks(req,res){
   var currentdirPath = path.join(config['path'],req.params.album.toString());
 
   files = fs.readdirSync(currentdirPath).filter(function(file){
-    return fs.statSync(path.join(currentdirPath,file)).isFile();
+    return (file.indexOf(".mp3") !== -1 ||file.indexOf(".MP3")!== -1 ||file.indexOf(".m4a")!== -1||file.indexOf(".flac")!== -1 ||file.indexOf(".aac")!== -1)
   });
 
   dir = fs.readdirSync(currentdirPath).filter(function(file){
-    return fs.statSync(path.join(currentdirPath,file)).isDirectory();
+    return (fs.statSync(path.join(currentdirPath,file)).isDirectory())
     });
 
   res.render('pistes',{pistes:files, dossiers:dir, album:req.params.album});
@@ -79,12 +79,10 @@ function getAlbumCover(req,res){
 
        if(test[0].indexOf(".jpg") !== -1)
        {
-         console.log("toto");
          var mime = "image/jpg";
        }
        else if (test[0].indexOf(".png") !== -1) {
          var mime = "image/png";
-         console.log("tata");
          }
 
          res.status(200).header({
