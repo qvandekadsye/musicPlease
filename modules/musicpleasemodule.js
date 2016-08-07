@@ -8,7 +8,7 @@ function getAlbums(req,res){
   filesG = fs.readdirSync(config['path']).filter(function(file){
   return fs.statSync(path.join(config['path'], file)).isDirectory();
   });
-  res.render('album',{albums:filesG});
+  res.render('album',{albums:filesG, titre:"My albums"});
 }
 
 function getTracks(req,res){
@@ -23,7 +23,7 @@ function getTracks(req,res){
     return (fs.statSync(path.join(currentdirPath,file)).isDirectory())
     });
 
-  res.render('pistes',{pistes:files, dossiers:dir, album:req.params.album});
+  res.render('pistes',{pistes:files, dossiers:dir, album:req.params.album, titre:"Album:"+req.params.album});
 }
 
 function play(req, res){
