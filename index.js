@@ -14,11 +14,11 @@ var filesG;
 app.set('view engine','ejs');
 app.use(express.static(path.join(__dirname,'/public')));
 app.get('/', function(req,res) {
-  res.render('index');
+  res.render('index',{titre:"Music Please !"});
 });
 
 app.get('/about', function(req,res) {
-  res.render('index');
+  res.render('index',{titre:"About"});
 });
 
 app.get('/seconnecter', function(req,res){
