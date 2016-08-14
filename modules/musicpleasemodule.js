@@ -2,6 +2,7 @@ var config = require('../config.json');
 var fs = require('fs');
 var path = require('path');
 var glob = require('glob');
+var mm = require('musicmetadata');
 
 function getAlbums(req,res){
   console.log(config['path']);
@@ -13,26 +14,46 @@ function getAlbums(req,res){
 
 function getTracks(req,res){
   console.log(req.params.album.toString());
-  var currentdirPath = path.join(config['path'],req.params.album.toString());
+    var currentdirPath = path.join(config['path'],req.params.album.toString());
+    if(req.params.folder)
+    {
+      console.log(req.params.folder);
+      currentdirPath=path.join(currentdirPath,req.params.folder.toString())
+    }
 
   files = fs.readdirSync(currentdirPath).filter(function(file){
     return (file.indexOf(".mp3") !== -1 ||file.indexOf(".MP3")!== -1 ||file.indexOf(".m4a")!== -1||file.indexOf(".flac")!== -1 ||file.indexOf(".aac")!== -1)
   });
 
+
+
   dir = fs.readdirSync(currentdirPath).filter(function(file){
     return (fs.statSync(path.join(currentdirPath,file)).isDirectory())
     });
-
-  res.render('pistes',{pistes:files, dossiers:dir, album:req.params.album, titre:"Album:"+req.params.album});
+    if(!req.params.folder)
+      res.render('pistes',{pistes:files, dossiers:dir, album:req.params.album, titre:"Album:"+req.params.album});
+      else
+        res.render('pistes',{pistes:files, dossiers:dir, album:req.params.album, titre:"Album:"+req.params.album, folder:req.params.folder});
 }
 
 function play(req, res){
   var album = req.params.album;
-  console.log("Album : "+album);
+
   var piste = req.params.piste;
-  console.log("piste : " +piste);
+
   var path1 = path.join(config['path'],album);
-  var fullpath = path.join(path1,piste);
+  if(!req.params.folder)
+  {
+    var fullpath = path.join(path1,piste);
+    console.log("jexistepas");
+  }
+  else {
+    var fullpath = path.join(path1,req.params.folder);
+    fullpath = path.join(fullpath,piste);
+    console.log("fullpath="+fullpath);
+    console.log("jexiste");
+  }
+
   var stat = fs.statSync(fullpath);
   var range = req.headers.range;
   var redStream;
