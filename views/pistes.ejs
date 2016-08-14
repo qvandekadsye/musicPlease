@@ -23,7 +23,7 @@
             <div id="foldersListes">
             <% dossiers.forEach(function(item,index){ %>
               <div class="album-info">
-                <a class="album-link" href="album/<%=item %>">
+                <a class="album-link" href="/album/<%= album %>/<%=item %>">
                   <img class="jaquette" src ="/cover/<%= album %>"/>
                 <span class="album-name">
                   <%= item %>
@@ -42,7 +42,12 @@
             <div id="pistesListes">
               <% pistes.forEach(function(item,index){ %>
                 <div class="album-info">
-                  <a class="album-link tracks" href="/play/<%=album %>/<%=item%>">
+                  <% if(!locals.folder){ %>
+                    <a class="album-link tracks" href="/play/<%=album %>/<%=item%>">
+                      <%} else { %>
+                        <%=folder%>
+                      <a class="album-link tracks" href="/play/<%=album %>/<%=item%>/<%=folder%>">
+                        <% } %>
                     <img class="jaquette" src ="/cover/<%= album %>"/>
                   <span class="album-name">
                     <%= item %>

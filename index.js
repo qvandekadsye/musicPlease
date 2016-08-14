@@ -31,12 +31,13 @@ app.post("/seconnecter",function(req,res){
 
 app.get("/albums",mup.getAlbums);
 
-app.get("/album/:album",mup.getTracks);
+app.get("/album/:album/:folder?",mup.getTracks);
 
-app.get("/play/:album/:piste", mup.play);
+app.get("/play/:album/:piste/:folder?", mup.play);
 
 
 app.get("/cover/:album",mup.getAlbumCover);
+
 
 
 
